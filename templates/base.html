@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/base.css" %}">
+    <script type="text/javascript" src="{% static "js/base.js" %}"></script>
+    <title>
+        {% block title %}
+            title
+        {% endblock %}
+    </title>
+
+    {% block styles %}{% endblock %}
+        <script type="text/javascript" src="{% static "JQuery/jquery.min.js" %}"></script>
+        <script type="text/javascript" src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+
+    {% block scripts %} {% endblock %}
+</head>
+<body>
+    <div>
+        {% block navbar %}
+          <nav id="nav" class="navbar navbar-light bg-light">
+              <a class="navbar-brand" href="{% url "core:home" %}">
+                    <img src="{% static "images/icon.svg" %}" width="200" height="74.193" >
+              </a>
+          </nav>
+        {% endblock %}
+        {% block content %}
+
+        {% endblock %}
+        {% block footer %}
+            <div class="footer">
+                <a href="#nav">
+                <svg xmlns="http://www.w3.org/2000/svg" class="footer_arrow" fill="none" viewBox="0 0 20 24" width="20" height="24">
+
+                    <path d="M 1.429 11.39 l 7.55 -7.526 V 24 h 2.041 V 3.864 l 7.551 7.526 L 20 9.966 L 10 0 L 0 9.966 l 1.429 1.424 Z" ></path>
+
+                </svg>
+                </a>
+                <div class="footer_body">
+                    <div class="footer_copyright">
+                        © 2007 — 2019 ПАО РОСБАНК, Генеральная лицензия №2272 от 28.01.15
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+
+    </div>
+</body>
+</html>

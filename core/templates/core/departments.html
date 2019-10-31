@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static from staticfiles%}
+{% block styles %}
+     <link rel="stylesheet" type="text/css" href="{% static "/core/css/departments.css" %}">
+{% endblock %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+
+             <h2 class="departments_header">
+                 Териториальные отделы
+             </h2>
+
+        </div>
+        <div class="row">
+            <ul class="department_list">
+                 {% for depart in departs %}
+                    <li class="department_item" >
+                        <h4>
+                            <a href="{% url 'core:depart_values' depart.slug %}" class="department_item_link">
+                                {{ depart.department }} отдел
+                            </a>
+                        </h4>
+
+                    </li>
+                 {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+
+{% endblock %}

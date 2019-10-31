@@ -1,0 +1,34 @@
+.footer{
+    background-color: #282423;
+    width: 100%;
+}
+.footer_arrow{
+    position: relative;
+    display: inline-block;
+    width: 40px !important;
+    height: 44px !important;
+    padding: 10px;
+    top: 20px;
+    left: 40px;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    cursor: pointer;
+    fill: #fff !important;
+}
+.footer_arrow:hover {
+    fill: #c4c4c4 !important;
+}
+.footer_body{
+    display: inline-block;
+    height: 100%;
+    padding: 22px 7vw 36px;
+
+}
+.footer_copyright{
+    display: block;
+    font-size: 12px;
+    line-height: 16px;
+    color: #807d7d;
+    margin-bottom: 15px;
+}

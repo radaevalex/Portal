@@ -1,0 +1,40 @@
+<table class="table">
+    <thead class="table_head">
+        <tr>
+            <th scope="col">
+                {% include 'core/arrow.html' with field="month" value='Месяц' %}
+            </th>
+            <th scope="col">
+                 {% include 'core/arrow.html' with field="office__department" value='ТО' %}
+            </th>
+            <th scope="col">
+                {% include 'core/arrow.html' with field="office__city" value='Город' %}
+            </th>
+            <th scope="col">
+                {% include 'core/arrow.html' with field="office__id" value='Офис' %}
+            </th>
+            <th scope="col">
+                {% include 'core/arrow.html' with field="indicator__group" value='Группа показателей' %}
+            </th>
+            <th scope="col">
+                {% include 'core/arrow.html' with field="indicator__name" value='Показатель' %}
+            </th>
+            <th scope="col">
+                {% include 'core/arrow.html' with field="value" value='Значение' %}
+            </th>
+        </tr>
+    </thead>
+    <tbody class="table_body">
+        {% for value in values %}
+            <tr>
+                <td>{{ value.month }}</td>
+                <td>{{ value.office.department }}</td>
+                <td>{{ value.office.city }}</td>
+                <td>{{ value.office.id }}</td>
+                <td>{{ value.indicator.group }}</td>
+                <td>{{ value.indicator.name }}</td>
+                <td>{{ value.value }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

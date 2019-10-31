@@ -1,0 +1,9 @@
+<a class="table_head_field_link"
+   href="?sort={{ sort_link.direct }}{{ field }}">{{ value }}</a>
+{% if sort_link.field == field %}
+    {% if sort_link.direct == "-" %}
+        <i class="down"></i>
+    {% else %}
+        <i class="up"></i>
+    {% endif %}
+{% endif %}
