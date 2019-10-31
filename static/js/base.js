@@ -13,8 +13,6 @@ function displayFooter() {
     }
 }
 document.addEventListener("DOMContentLoaded", function() {
-    displayFooter()
-});
-document.addEventListener("DOMContentResize", function() {
-    displayFooter()
+    window.onload = displayFooter;
+    window.onresize = displayFooter;
 });

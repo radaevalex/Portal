@@ -11,40 +11,27 @@
             <th scope="col" rowspan="3">
                 Офис
             </th>
-            <th scope="col" colspan="2">
-                Портфель
-            </th>
-            <th scope="col" colspan="2">
-                Финансовые
-            </th>
+            {% for group, count in groups.items %}
+                <th scope="col" colspan="{{ count }}">
+                    {{ group }}
+                </th>
+            {% endfor %}
         </tr>
         <tr class="second">
-            <th scope="col" class="line_left line_top">
-                Активные клиенты
-            </th>
-            <th scope="col" class="line_top">
-                 Кридитные карты
-            </th>
-            <th scope="col" class="line_top">
-                NBI
-            </th>
-            <th scope="col" class="line_top">
-                Costs
-            </th>
+            {% for indic in indicators %}
+                 <th scope="col">
+                    {{ indic.name }}
+                 </th>
+            {% endfor %}
+
         </tr>
         <tr class="third">
-            <th scope="col" class="line_left">
-                Результат за период
-            </th>
-            <th scope="col">
-                 Результат за период
-            </th>
-            <th scope="col">
-                Результат за период
-            </th>
-            <th scope="col">
-                Результат за период
-            </th>
+            {% for indic in indicators %}
+                <th scope="col">
+                    Результат за период
+                </th>
+            {% endfor %}
+
         </tr>
     </thead>
     <tbody class="table_body">
@@ -52,10 +39,9 @@
             <td>{{ department }}</td>
             <td> - </td>
             <td> - </td>
-            <td class="res_val">{{ res.ak }}%</td>
-            <td class="res_val">{{ res.cc }}%</td>
-            <td class="res_val">{{ res.nbi }}%</td>
-            <td class="res_val">{{ res.costs }}%</td>
+            {% for indic, val in res.items %}
+                <td class="res_val">{{ val }}%</td>
+            {% endfor %}
         </tr>
     </tbody>
 </table>

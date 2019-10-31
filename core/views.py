@@ -1,4 +1,4 @@
-from .models import Office, Dynamic
+from .models import Office, Dynamic, Indicator
 from django.shortcuts import render, get_list_or_404, redirect
 from django.db.models import Q
 from datetime import datetime
@@ -49,7 +49,6 @@ def depart_values(request, office_slug):
                                | Q(indicator__name__icontains=q)
                                | Q(value__icontains=q))
 
-
     month_list = Dynamic.objects.values_list('month', flat=True).distinct()
     sort_link = {'direct': direct,
                  'field': req_sort_field}
@@ -81,16 +80,22 @@ def results(request, office_slug):
     d1 = d1.strftime('%Y-%m-%d')
     d2 = d2.strftime('%Y-%m-%d')
 
-    indicators = {'ak': 'Активные клиенты', 'cc': 'Кредитные карты', 'nbi': 'NBI', 'costs': 'Costs'}
-
+    indicators = Indicator.objects.all()
+    groups = dict()
     res = dict()
-    for indic, name in indicators.items():
-        v1 = values.filter(Q(month=d1) & Q(indicator__name=name)).aggregate(ag_value=Sum('value'))
-        v2 = values.filter(Q(month=d2) & Q(indicator__name=name)).aggregate(ag_value=Sum('value'))
+    for indic in indicators:
+        v1 = values.filter(Q(month=d1) & Q(indicator__name=indic.name)).aggregate(ag_value=Sum('value'))
+        v2 = values.filter(Q(month=d2) & Q(indicator__name=indic.name)).aggregate(ag_value=Sum('value'))
         v = round((float(v2['ag_value']) / float(v1['ag_value'])) * 100)
-        res[indic] = v
+        if groups.get(indic.group):
+            groups[indic.group] += 1
+        else:
+            groups[indic.group] = 1
+        res[indic.name] = v
 
     context = {
+        'groups': groups,
+        'indicators': indicators,
         'slug': office_slug,
         'department': name_depart,
         'res': res,
