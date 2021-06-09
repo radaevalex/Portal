@@ -1,4 +1,4 @@
-Django==2.2.6
+Django==2.2.22
 django-mssql-backend==2.2.0
 pyodbc==4.0.27
 Unidecode==1.1.1
